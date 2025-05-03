@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+}
+
+/* ::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #1f2151;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2f3279;
+} */
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: url("./img/bg.png");
+    background-size: contain;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 3.12rem;
+    color: #f1f2f6;
+    overflow-y: auto; /* Permite rolagem quando necessário */
+    padding: 2rem 0;
+}
+
+main {
+    width: 90%;
+    max-width: 23.43rem;
+    min-width: 20rem;
+    border-radius: 1.5rem;
+    border: 1px solid #2f3279;
+    background-color: #141534;
+    margin: 0 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+label {
+    font-size: 0.75rem;
+    color: #b2b8de;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+input,
+select {
+    outline: 0;
+    color: #f1f2f6;
+    border: 1px solid #1f2151;
+    border-radius: 0.5rem;
+    background-color: #0e0f25;
+    padding: 1rem;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    background: url("./img/chevron-down.svg") no-repeat;
+    background-position: calc(100% - 0.75rem) center !important;
+    background-color: #0e0f25;
+    
+    cursor: pointer;
+}
+
+input::placeholder,
+select:invalid,
+option {
+    color: #b2b8de;
+}
+
+input:focus,
+select:focus {
+    border: 1px solid #4a5dcd;
+}
+
+button {
+    height: 3.25rem;
+
+    background-color: #2f34ab;
+
+    border: none;
+    border-radius: 0.5rem;
+
+    color: #f1f2f6;
+
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    margin-top: 3rem;
+    outline: 0;
+}
+
+button:hover {
+    background-color: #4a5dcd;
+}
+
+button:focus {
+    outline: 1.5px solid #4a5dcd;
+}
+
+/* Footer ajustado para permitir visibilidade e rolagem */
+footer {
+    background-color: #1f2151;
+    padding: 2.5rem;
+    max-height: 12.25rem;
+    text-align: center;
+    /* display: none; */
+    overflow-y: auto; /* Garante que, caso necessário, role internamente */
+    width: 100%;
+}
+
+.show-result {
+    display: block;
+}
+
+footer span {
+    color: #7d8dec;
+    font-size: 1rem;
+    font-family: "IBM Plex Mono", monospace;
+    margin-bottom: 0.5rem;
+    line-height: 1.25rem;
+}
+
+footer h1 {
+    color: #f1f2f6;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 3rem;
+    word-break: break-word;
+}
+
+/* Media Query para telas pequenas */
+@media (max-width: 23.43rem) {
+    main {
+        padding: 2rem 1rem;
+        border-radius: 1rem;
+        margin: 0 0.5rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    input,
+    select {
+        font-size: 0.875rem;
+    }
+
+    footer {
+        padding: 1.5rem;
+        font-size: 0.875rem;
+    }
+}
