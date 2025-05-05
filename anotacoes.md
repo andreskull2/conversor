@@ -9,3 +9,5 @@ Nesta aula, foi compartilhado um link para um repositório contendo um projeto b
 ## Conhecendo o projeto
 Nesta etapa, vamos implementar JavaScript em um projeto de conversão de moeda. O HTML e o CSS estão disponíveis para download. Vamos adicionar funcionalidades como a conversão de moedas, seleção de moedas e validação do campo de entrada. Recomendo adicionar essa aplicação do campo de entrada. Recomendo adicionar essa aplicação ao seu portfólio. Vamos garantir que apenas números inteiros sejam aceitos no campo de valor. Nas próximas aulas, veremos como fazer todas essas funcionalidades com JavaScript. Vamos começar a desenvolver o JavaScript para essa aplicação.
 
+## Criando o arquivo de script
+Neste vídeo, é mostrado como criar um arquivo JavaScript, conectá-lo ao HTML e a importância de colocar o script no final do body para otimizar o carregamento da página.

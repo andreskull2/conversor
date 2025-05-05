@@ -137,7 +137,7 @@ footer {
     padding: 2.5rem;
     max-height: 12.25rem;
     text-align: center;
-    /* display: none; */
+    display: none;
     overflow-y: auto; /* Garante que, caso necessário, role internamente */
     width: 100%;
 }
