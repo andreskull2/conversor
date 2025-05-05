@@ -11,3 +11,6 @@ Nesta etapa, vamos implementar JavaScript em um projeto de conversão de moeda. 
 
 ## Criando o arquivo de script
 Neste vídeo, é mostrado como criar um arquivo JavaScript, conectá-lo ao HTML e a importância de colocar o script no final do body para otimizar o carregamento da página.
+
+## Obtendo o valor digitado
+Neste trecho da aula, foi abordado como recuperar o valor digitado em um input HTML utilizando JavaScript. Foi mostrado o código HTML do input, explicado como acessar o elemento pelo id e como capturar o valor inserido pelo usuário. Foi utilizado o método AddEventListener para observar as interações do usuário no input e exibir o conteúdo digitado no console.
