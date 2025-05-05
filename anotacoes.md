@@ -14,3 +14,10 @@ Neste vídeo, é mostrado como criar um arquivo JavaScript, conectá-lo ao HTML 
 
 ## Obtendo o valor digitado
 Neste trecho da aula, foi abordado como recuperar o valor digitado em um input HTML utilizando JavaScript. Foi mostrado o código HTML do input, explicado como acessar o elemento pelo id e como capturar o valor inserido pelo usuário. Foi utilizado o método AddEventListener para observar as interações do usuário no input e exibir o conteúdo digitado no console.
+
+## Validando o input
+Neste trecho, é abordado o processo de garantir que um input aceite apenas números, utilizando expressões regulares para remover caracteres de texto. A expressão regular é utilizada com o tétodo replace para substituir os caracteres indesejados por nada, permitindo assim que o input contenha apenas números. Essa técnica é demonstrada com um exemplo prático, mostrando como o conteúdo do input é atualizado sem os caracteres de texto, garantindo que apenas números sejam aceitos.
+
+## Obtendo a moeda selecionada
+Nesta aula, aprendemos a obter a moeda selecionada pelo usuário através de um input no formulário. Utilizamos o evento de submit do formulário para capturar essa informação e desativar o comportamento padrão de recarregar a página. Ao selecionar uma moeda e clicar em "converter em reais", conseguimos visualizar no console o valor da moeda selecionada, identificado por um código de três letras.
+
