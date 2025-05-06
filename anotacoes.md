@@ -33,3 +33,6 @@ Neste trecho da aula, aprendemos a utilizar JavaScript para tornar as informaç�
 ## Criar função para formatar moeda
 Neste trecho da aula, aprendemos a criar uma função em JavaScript para formatar valores monetários no padrão brasileiro (BRL). Utilizamos o método toLocaleString para realizar a formatação, garantindo que o valor seja exibido corretamente. Ao converter o valor para número, conseguimos acessar as opções disponíveis para formatação. Com essa função criada, podemos reaproveitá-la em diferentes partes do código, facilitando a manutenção e organização do nosso projeto.
 
+## Exibindo o total
+Nesta aula, aprendemos a calcular o total dinamicamente em um código JavaScript. Foi criada uma variável para armazenar o total, que é calculado multiplicando o Amount pelo Price. O resultado é exibido na página usando o método GetElementByID. O próximo passo será formatar o resultado.
+
