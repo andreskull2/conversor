@@ -23,3 +23,6 @@ Nesta aula, aprendemos a obter a moeda selecionada pelo usuário através de um 
 
 ## Identificando a moeda
 Neste trecho da aula, foi abordado o processo de conversão de moedas em uma aplicação JavaScript. Foi criada uma função chamada convertCurrency que recebe três parâmetros: o valor total, o valor da moeda e o símbolo da moeda. Foi explicado o uso de constantes para definir os valores das moedas, facilitando a atualização futura. Foi utilizado um switch case para identificar a moeda selecionada e realizar a conversão correta. 
+
+## Exibindo o footer
+Neste trecho da aula, foi abordado como exibir dinamicamente o footer do projeto. Foi explicado como adicionar e remover classes no elemento footer para exibi-lo ou ocultá-lo. Além disso, foi mencionado o uso do bloco try-catch para tratamento de erros e a importância de organizar o código de forma clara. O instrutor demonstrou como selecionar elementos do documento e como manipular classes CSS para controlar a exibição do footer.  
