@@ -29,3 +29,7 @@ Neste trecho da aula, foi abordado como exibir dinamicamente o footer do projeto
 
 ## Exibindo a cotação da moeda
 Neste trecho da aula, aprendemos a utilizar JavaScript para tornar as informações de uma página web dinâmicas. Foi mostrado como selecionar elementos do HTML usando IDs, manipular o conteúdo desses elementos e exibir valores de moedas de forma dinâmica. Foi explicado o uso da interpolação de strings para combinar variáveis com texto.
+
+## Criar função para formatar moeda
+Neste trecho da aula, aprendemos a criar uma função em JavaScript para formatar valores monetários no padrão brasileiro (BRL). Utilizamos o método toLocaleString para realizar a formatação, garantindo que o valor seja exibido corretamente. Ao converter o valor para número, conseguimos acessar as opções disponíveis para formatação. Com essa função criada, podemos reaproveitá-la em diferentes partes do código, facilitando a manutenção e organização do nosso projeto.
+
