@@ -21,3 +21,5 @@ Neste trecho, é abordado o processo de garantir que um input aceite apenas núm
 ## Obtendo a moeda selecionada
 Nesta aula, aprendemos a obter a moeda selecionada pelo usuário através de um input no formulário. Utilizamos o evento de submit do formulário para capturar essa informação e desativar o comportamento padrão de recarregar a página. Ao selecionar uma moeda e clicar em "converter em reais", conseguimos visualizar no console o valor da moeda selecionada, identificado por um código de três letras.
 
+## Identificando a moeda
+Neste trecho da aula, foi abordado o processo de conversão de moedas em uma aplicação JavaScript. Foi criada uma função chamada convertCurrency que recebe três parâmetros: o valor total, o valor da moeda e o símbolo da moeda. Foi explicado o uso de constantes para definir os valores das moedas, facilitando a atualização futura. Foi utilizado um switch case para identificar a moeda selecionada e realizar a conversão correta. 
