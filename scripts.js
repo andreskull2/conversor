@@ -13,9 +13,9 @@ async function getExchangeRates() {
 
         // Atualiza as cotações
         const USD = 1;  // Dólar é sempre 1
-        const EUR = data.rates.EUR;
-        const GBP = data.rates.GBP;
-        const BRL = data.rates.BRL;
+        const EUR = data.rates.EUR || 0;
+        const GBP = data.rates.GBP || 0;
+        const BRL = data.rates.BRL || 0;
 
         // Atualiza a cotação exibida
         description.textContent = `US$ 1 = ${formatCurrencyBRL(BRL)}`;
@@ -34,10 +34,9 @@ async function getExchangeRates() {
         alert("Não foi possível obter as cotações. Tente novamente mais tarde.");
         
         // Retorna um objeto vazio para evitar erro de destructuring no código de chamada
-        return {};
+        return { USD: 1, EUR: 0, GBP: 0, BRL: 0 }; // Garantir que sempre tenha valores definidos
     }
 }
-
 
 // Obtendo os elementos do formulário
 const form = document.querySelector("form");
@@ -60,24 +59,28 @@ form.onsubmit = async (event) => {
     // Obtendo as cotações mais recentes
     const { USD, EUR, GBP, BRL } = await getExchangeRates();
 
-    switch (currency.value) {
-        case "USD":
-            convertCurrency(amount.value, USD, "US$");
-            break;
-        case "EUR":
-            convertCurrency(amount.value, EUR, "€");
-            break;
-        case "GBP":
-            convertCurrency(amount.value, GBP, "£");
-            break;        
+    // Verifique se o retorno da API contém valores válidos
+    if (USD && EUR && GBP && BRL) {
+        switch (currency.value) {
+            case "USD":
+                convertCurrency(amount.value, USD, "US$");
+                break;
+            case "EUR":
+                convertCurrency(amount.value, EUR, "€");
+                break;
+            case "GBP":
+                convertCurrency(amount.value, GBP, "£");
+                break;
+        }
+    } else {
+        console.error("Erro: Cotações inválidas.");
+        alert("Erro ao buscar as cotações. Tente novamente mais tarde.");
     }
 };
 
 // Função para converter a moeda.
 function convertCurrency(amount, price, symbol) {
-
     try {
-
         // Exibindo a cotação da moeda selecionada
         description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
 
@@ -99,7 +102,6 @@ function convertCurrency(amount, price, symbol) {
         footer.classList.add("show-result");
 
     } catch (error) {
-
         // Remove a classe do footer removendo ele da tela
         footer.classList.remove("show-result");
 
@@ -110,7 +112,6 @@ function convertCurrency(amount, price, symbol) {
 
 // Formata a moeda em Real Brasileiro.
 function formatCurrencyBRL(value) {
-
     // Converte para número para utilizar o toLocaleString para formatar no padrão BRL (R$ 00,00)
     return Number(value).toLocaleString("pt-BR", {
         style: "currency",
