@@ -3,7 +3,8 @@ let exchangeRates = {};
 // Função para buscar as cotações da API
 async function fetchExchangeRates() {
   try {
-    const response = await fetch("https://api.exchangerate.host/latest?base=BRL")
+    const response = await fetch("https://api.exchangerate.host/latest?base=BRL&symbols=USD,EUR,GBP")
+
     
     // Verifica o status da resposta
     if (!response.ok) {
