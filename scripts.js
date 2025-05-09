@@ -1,16 +1,18 @@
 async function getExchangeRates() {
     try {
+        // Fazendo a requisição para a API
         const response = await fetch("https://api.exchangerate.host/latest?base=USD&symbols=BRL,EUR,GBP");
         const data = await response.json();
 
-        if (!data.rates) {
-            throw newError("Dados de câmbio não recebidos corretamente da API.");
-        }
-
         console.log("Dados da API:", data); // Verifique se os dados estão sendo recebidos corretamente
 
+        // Verificando se a resposta foi bem-sucedida
+        if (!data.success) {
+            throw new Error('Erro na obtenção das cotações da API');
+        }
+
         // Atualiza as cotações
-        const USD = 1;
+        const USD = 1;  // Dólar é sempre 1
         const EUR = data.rates.EUR;
         const GBP = data.rates.GBP;
         const BRL = data.rates.BRL;
@@ -23,13 +25,19 @@ async function getExchangeRates() {
         const now = new Date();
         updatedAt.textContent = `Última atualização: ${now.toLocaleDateString("pt-BR")} às ${now.toLocaleTimeString("pt-BR")}`;
 
+        // Retorna as cotações
         return { USD, EUR, GBP, BRL };
 
     } catch (error) {
+        // Exibe o erro no console e alerta o usuário
         console.log("Erro ao buscar as cotações:", error);
         alert("Não foi possível obter as cotações. Tente novamente mais tarde.");
+        
+        // Retorna um objeto vazio para evitar erro de destructuring no código de chamada
+        return {};
     }
 }
+
 
 // Obtendo os elementos do formulário
 const form = document.querySelector("form");
