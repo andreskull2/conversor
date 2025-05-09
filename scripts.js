@@ -5,17 +5,23 @@ async function fetchExchangeRates() {
     const response = await fetch("https://api.exchangerate.host/latest?base=BRL")
     const data = await response.json()
 
-    // Pegando o valor de 1 unidade da moeda estrangeira em reais (invertendo)
+    if (!data || !data.rates) {
+      throw new Error("Resposta da API inválida")
+    }
+
     exchangeRates = {
       USD: 1 / data.rates.USD,
       EUR: 1 / data.rates.EUR,
       GBP: 1 / data.rates.GBP
     }
+
+    console.log("Cotações carregadas:", exchangeRates)
   } catch (error) {
     console.error("Erro ao buscar cotações:", error)
-    alert("Não foi possível carregar as cotações. Tente novamente mais tarde.")
+    alert("Erro ao buscar cotações. Tente novamente mais tarde.")
   }
 }
+
 
 const form = document.querySelector("form")
 const amount = document.getElementById("amount")
