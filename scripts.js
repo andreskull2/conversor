@@ -1,96 +1,95 @@
-// Elementos do DOM
-const form = document.querySelector("form");
-const amount = document.getElementById("amount");
-const currency = document.getElementById("currency");
+let exchangeRates = {}
+
+async function fetchExchangeRates() {
+  try {
+    const response = await fetch("https://v6.exchangerate-api.com/v6/20d0a2a98f4ddf43d315a9a9/latest/USD")
+    const data = await response.json()
+
+    exchangeRates = {
+      USD: 1, // já está em USD
+      EUR: data.conversion_rates.EUR / data.conversion_rates.USD,
+      GBP: data.conversion_rates.GBP / data.conversion_rates.USD
+    }
+  } catch (error) {
+    console.error("Erro ao buscar cotações:", error)
+    alert("Não foi possível carregar as cotações. Tente novamente mais tarde.")
+  }
+}
+
+
+// Obtendo os elementos do formulário.
+const form = document.querySelector("form"); // formulário 
+const amount = document.getElementById("amount"); // valor
+const currency = document.getElementById("currency"); // moeda
+const footer = document.querySelector("main footer"); 
 const description = document.getElementById("description");
 const result = document.getElementById("result");
-const updatedAt = document.getElementById("updatedAt");
-const footer = document.querySelector("footer");
 
-// Só permite números no input
+// Manipulando o input amount para receber somente números.
 amount.addEventListener("input", () => {
-    amount.value = amount.value.replace(/^0+/, "").replace(/\D+/g, "");
+  const hasCharactersRegex = /\D+/g
+  amount.value = amount.value.replace(hasCharactersRegex, "")
 });
 
-// Função para formatar como Real (BRL)
-function formatCurrencyBRL(value) {
+// Captando o evento de submit (enviar) do formulário.
+form.onsubmit = (event) => {
+  event.preventDefault()
+
+
+  switch (currency.value){
+  case "USD":
+    convertCurrency(amount.value, exchangeRates.USD, "US$");
+    break
+  case "EUR":
+    convertCurrency(amount.value, exchangeRates.EUR, "€")
+    break
+  case "GBP":
+    convertCurrency(amount.value, exchangeRates.GBP, "£")
+    break
+}
+
+}
+
+// Função para converter a moeda.
+function convertCurrency(amount, price, symbol){
+  try {
+    // Exibindo a cotação da moeda selecionada
+    description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
+
+    // Calcula o total
+    let total = amount * price
+
+    // Verifica se o resultado não é um número.
+    if(isNaN(total)) {
+        return alert("Por favor, digite o valor corretamente para converter.")
+    }
+
+    // Formata o total para Real Brasileiro
+    total = formatCurrencyBRL(total).replace("R$", "")
+    
+    // Exibe o resultado total
+    result.textContent = `${total} Reais` 
+
+
+    // Aplica a classe que exibe o footer para mostrar o resultado
+    footer.classList.add("show-result")
+  } catch {
+    
+    // Remove a classe do footer removendo ele da tela
+    footer.classList.remove("show-result")
+    
+    console.error(error)
+    alert("Ocorreu um erro inesperado, tente novamente mais tarde.")
+}
+}
+
+// Formata a moeda em Real Brasileiro
+function formatCurrencyBRL (value) {
+    // Converte para número para utilizar o toLocaleString para formatar no padrão BRL (R$ 00,00)
     return Number(value).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
-    });
+    })
 }
 
-// Função para buscar as taxas de câmbio
-async function getExchangeRates() {
-    try {
-        const response = await fetch("https://v6.exchangerate-api.com/v6/20d0a2a98f4ddf43d315a9a9/latest/USD");
-        const data = await response.json();
-
-        if (data.result !== 'success') {
-            throw new Error('Erro na API de câmbio');
-        }
-
-        const rates = data.conversion_rates;
-
-        return {
-            USD: rates.BRL,
-            EUR: rates.BRL / rates.EUR,
-            GBP: rates.BRL / rates.GBP
-        };
-
-    } catch (error) {
-        console.log("Erro ao obter as cotações:", error);
-        alert("Erro ao buscar cotações. Tente novamente mais tarde.");
-        return {};
-    }
-}
-
-// Função principal para conversão e exibição
-async function convertCurrency() {
-    const { USD, EUR, GBP } = await getExchangeRates();
-
-    const value = Number(amount.value);
-    if (!value || value <= 0) {
-        return alert("Digite um valor numérico maior que zero.");
-    }
-
-    let total = 0;
-    let symbol = "";
-
-    switch (currency.value) {
-        case "USD":
-            total = value * USD;
-            symbol = "US$";
-            description.textContent = `${symbol} 1 = ${formatCurrencyBRL(USD)}`;
-            break;
-        case "EUR":
-            total = value * EUR;
-            symbol = "€";
-            description.textContent = `${symbol} 1 = ${formatCurrencyBRL(EUR)}`;
-            break;
-        case "GBP":
-            total = value * GBP;
-            symbol = "£";
-            description.textContent = `${symbol} 1 = ${formatCurrencyBRL(GBP)}`;
-            break;
-        default:
-            return alert("Moeda não reconhecida.");
-    }
-
-    result.textContent = `${formatCurrencyBRL(total)} Reais`;
-
-    const now = new Date();
-    updatedAt.textContent = `Última atualização: ${now.toLocaleDateString("pt-BR")} às ${now.toLocaleTimeString("pt-BR")}`;
-
-    footer.classList.add("show-result");
-}
-
-// Evento de envio do formulário
-form.onsubmit = (event) => {
-    event.preventDefault();
-    convertCurrency();
-};
-
-// Evento de atualização ao digitar ou alterar a moeda
-amount.addEventListener("input", convertCurrency);
-currency.addEventListener("change", convertCurrency);
+fetchExchangeRates()
