@@ -1,40 +1,34 @@
 async function getExchangeRates() {
     try {
-        // Fazendo a requisição para a API
-        const response = await fetch("https://api.exchangerate.host/latest?base=USD&symbols=BRL,EUR,GBP");
+        // Substitua YOUR_ACCESS_KEY pela sua chave de acesso
+        const response = await fetch(`https://v6.exchangerate-api.com/v6/20d0a2a98f4ddf43d315a9a9/latest/USD
+`);
         const data = await response.json();
 
-        console.log("Dados da API:", data); // Verifique se os dados estão sendo recebidos corretamente
-
-        // Verificando se a resposta foi bem-sucedida
-        if (!data.success) {
-            throw new Error('Erro na obtenção das cotações da API');
+        if (data.result !== 'success') {
+            throw new Error('Erro ao obter as cotações');
         }
 
-        // Atualiza as cotações
-        const USD = 1;  // Dólar é sempre 1
-        const EUR = data.rates.EUR || 0;
-        const GBP = data.rates.GBP || 0;
-        const BRL = data.rates.BRL || 0;
+        console.log("Dados da API:", data);
 
-        // Atualiza a cotação exibida
+        // Exemplo de como acessar as cotações
+        const USD = 1; // O dólar sempre será 1
+        const EUR = data.conversion_rates.EUR;
+        const GBP = data.conversion_rates.GBP;
+        const BRL = data.conversion_rates.BRL;
+
         description.textContent = `US$ 1 = ${formatCurrencyBRL(BRL)}`;
-
-        // Atualiza o horário da última atualização
+        
         const updatedAt = document.getElementById("updatedAt");
         const now = new Date();
         updatedAt.textContent = `Última atualização: ${now.toLocaleDateString("pt-BR")} às ${now.toLocaleTimeString("pt-BR")}`;
 
-        // Retorna as cotações
         return { USD, EUR, GBP, BRL };
 
     } catch (error) {
-        // Exibe o erro no console e alerta o usuário
         console.log("Erro ao buscar as cotações:", error);
         alert("Não foi possível obter as cotações. Tente novamente mais tarde.");
-        
-        // Retorna um objeto vazio para evitar erro de destructuring no código de chamada
-        return { USD: 1, EUR: 0, GBP: 0, BRL: 0 }; // Garantir que sempre tenha valores definidos
+        return {};
     }
 }
 
