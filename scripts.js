@@ -2,19 +2,25 @@ let exchangeRates = {}
 
 async function fetchExchangeRates() {
   try {
+    // Faz a requisição para a API e pega as cotações
     const response = await fetch("https://v6.exchangerate-api.com/v6/20d0a2a98f4ddf43d315a9a9/latest/USD")
     const data = await response.json()
 
+    // Agora, pegamos o valor do Dólar em relação ao Real diretamente da resposta da API
     exchangeRates = {
-      USD: 1, // já está em USD
-      EUR: data.conversion_rates.EUR / data.conversion_rates.USD,
-      GBP: data.conversion_rates.GBP / data.conversion_rates.USD
+      USD: data.conversion_rates.BRL, // Agora pegamos o valor do USD em relação ao BRL diretamente
+      EUR: data.conversion_rates.EUR, // Cotação do Euro
+      GBP: data.conversion_rates.GBP  // Cotação da Libra
     }
   } catch (error) {
     console.error("Erro ao buscar cotações:", error)
     alert("Não foi possível carregar as cotações. Tente novamente mais tarde.")
   }
 }
+
+
+// O restante do código permanece o mesmo, pois ele já está correto para realizar a conversão
+
 
 
 // Obtendo os elementos do formulário.
