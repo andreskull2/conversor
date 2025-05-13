@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="Project preview" src="github/capa.png" width="100%">
+  <img alt="Project preview" src="github/capa.jpg" width="100%">
 </p>
 
 ---
